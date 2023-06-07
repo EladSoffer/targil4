@@ -3,7 +3,6 @@ package com.example.friends;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private EditText confirmPasswordEditText;
     private EditText displayNameEditText;
-    private Bitmap selectedBitmap;
 
 
     @Override
