@@ -2,6 +2,8 @@ package com.example.friends;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,10 +19,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-
 public class MainActivity extends AppCompatActivity {
-
-    private static final int PICK_IMAGE_REQUEST_CODE = 1;
 
     private ImageView selectedImage;
     private EditText usernameEditText;
@@ -28,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText confirmPasswordEditText;
     private EditText displayNameEditText;
 
+    private Uri selectedImageUri;
+
+    private ActivityResultLauncher<String> imagePickerLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +43,18 @@ public class MainActivity extends AppCompatActivity {
         displayNameEditText = findViewById(R.id.display_name_input);
 
         Button registerButton = findViewById(R.id.reg_btn);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
-        });
+        registerButton.setOnClickListener(v -> registerUser());
+
+        // Initialize the image picker launcher
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                result -> {
+                    if (result != null) {
+                        selectedImageUri = result;
+                        displaySelectedImage();
+                    }
+                }
+        );
     }
 
     private void registerUser() {
@@ -67,50 +75,67 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Save the user details and the selected image
+        saveUserDetails(username, password, displayName);
+        if (selectedImageUri != null) {
+            saveImage(selectedImageUri);
+        }
+
+        // Display a toast or perform any other action to indicate successful registration
+        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
     }
 
     public void onAddPictureButtonClick(View view) {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE);
+        imagePickerLauncher.launch("image/*");
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            Uri selectedImageUri = data.getData();
+        if (resultCode == RESULT_OK && data != null) {
+            selectedImageUri = data.getData();
+            displaySelectedImage();
+        }
+    }
 
-            // Create a Bitmap from the selected image URI
-            Bitmap bitmap = null;
+    private void displaySelectedImage() {
+        if (selectedImageUri != null) {
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+
+                if (bitmap != null) {
+                    // Resize the bitmap to maximum dimensions of 200x200 while preserving aspect ratio
+                    int maxWidth = 300;
+                    int maxHeight = 300;
+
+                    int imageWidth = bitmap.getWidth();
+                    int imageHeight = bitmap.getHeight();
+
+                    if (imageWidth > 0 && imageHeight > 0) {
+                        float scale = Math.min(((float) maxWidth / imageWidth), ((float) maxHeight / imageHeight));
+                        Matrix matrix = new Matrix();
+                        matrix.postScale(scale, scale);
+                        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, imageWidth, imageHeight, matrix, true);
+
+                        selectedImage.setImageBitmap(resizedBitmap);
+                        selectedImage.setVisibility(View.VISIBLE);
+                    }
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-
-            if (bitmap != null) {
-                // Resize the bitmap to maximum dimensions of 200x200 while preserving aspect ratio
-                int maxWidth = 300;
-                int maxHeight = 300;
-
-                int imageWidth = bitmap.getWidth();
-                int imageHeight = bitmap.getHeight();
-
-                if (imageWidth > 0 && imageHeight > 0) {
-                    float scale = Math.min(((float) maxWidth / imageWidth), ((float) maxHeight / imageHeight));
-                    Matrix matrix = new Matrix();
-                    matrix.postScale(scale, scale);
-                    Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, imageWidth, imageHeight, matrix, true);
-
-                    selectedImage.setImageBitmap(resizedBitmap);
-                    selectedImage.setVisibility(View.VISIBLE);
-                }
             }
         }
     }
 
+    private void saveUserDetails(String username, String password, String displayName) {
+        // Save the user details to a database or send them to a server
+        // Implement your logic here
+    }
 
+    private void saveImage(Uri imageUri) {
+        // Save the image using the selectedImageUri
+        // Implement your image-saving logic here
+    }
 }
