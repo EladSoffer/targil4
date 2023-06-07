@@ -9,19 +9,20 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/Friends_label"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/Friedns_name"
         android:textSize="50sp" />
     <TextView
-        android:id="@+id/register_label"
+        android:id="@+id/login_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/register"
+        android:text="@string/login"
         android:textSize="30sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                 app:drawableLeftCompat="@drawable/ic_person" />
 
             <EditText
-                android:id="@+id/edit_username_reg"
+                android:id="@+id/editTextText2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:autofillHints=""
@@ -76,7 +77,7 @@
                 app:drawableLeftCompat="@drawable/ic_password" />
 
             <EditText
-                android:id="@+id/edit_password_reg"
+                android:id="@+id/editTextTextPassword3"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:autofillHints=""
@@ -89,99 +90,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:text="@string/confirm_password_register_label"
-                android:textSize="20sp"
-                app:drawableLeftCompat="@drawable/ic_password" />
-
-            <EditText
-                android:id="@+id/confirm_password"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:autofillHints=""
-                android:background="#aed3d9"
-                android:ems="10"
-                android:hint="@string/confirm_password"
-                android:inputType="textPassword"
-                android:textColorHint="#455A64"
-                tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
-
-            <TextView
-                android:id="@+id/display_name_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:text="@string/display_name"
-                android:textSize="20sp"
-                app:drawableLeftCompat="@drawable/ic_person" />
-
-            <EditText
-                android:id="@+id/display_name_input"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:autofillHints=""
-                android:background="#aed3d9"
-                android:ems="10"
-                android:hint="@string/enter_display_name"
-                android:inputType="text"
-                android:textColorHint="#455A64"
-                tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
-
-            <TextView
-                android:id="@+id/picture"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:text="@string/picture_reg"
-                android:textSize="20sp"
-                app:drawableLeftCompat="@drawable/ic_photo" />
-
-            <Button
-                android:id="@+id/submit_picture_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="@string/add_picture_button"
-                android:onClick="onAddPictureButtonClick" />
-
-            <ImageView
-                android:id="@+id/selected_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:maxWidth="60dp"
-                android:layout_gravity="center"
-                android:maxHeight="60dp"
-                android:scaleType="fitCenter"
-                />
-        </LinearLayout>
         <LinearLayout
             android:paddingTop="20dp"
             android:layout_width="match_parent"
@@ -205,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
-            android:text="@string/already_register"
+            android:text="@string/not_register"
             android:textSize="20sp"
             android:gravity="center_horizontal"
             android:textColor="#0000FF"
