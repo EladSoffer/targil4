@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".LoginActivity"
     android:background="@drawable/sky"
     android:orientation="vertical">
 
@@ -109,7 +109,7 @@
                 android:textColorLink="@color/custom_blue" />
         </LinearLayout>
         <TextView
-            android:id="@+id/already_register"
+            android:id="@+id/Not_registered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"

@@ -15,11 +15,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private ImageView selectedImage;
     private EditText usernameEditText;
@@ -44,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         Button registerButton = findViewById(R.id.reg_btn);
         registerButton.setOnClickListener(v -> registerUser());
+        TextView alreadyRegister = findViewById(R.id.already_register);
+        alreadyRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
         // Initialize the image picker launcher
         imagePickerLauncher = registerForActivityResult(
