@@ -15,11 +15,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private ImageView selectedImage;
     private EditText usernameEditText;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         Button registerButton = findViewById(R.id.reg_btn);
         registerButton.setOnClickListener(v -> registerUser());
+        TextView alreadyRegister = findViewById(R.id.already_register);
+        alreadyRegister.setOnClickListener(v -> finish());
+
+
 
         // Initialize the image picker launcher
         imagePickerLauncher = registerForActivityResult(
@@ -75,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(password.length() < 8){
+            Toast.makeText(this,"Password must be at list 8 chars",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if ( !(password.matches(".*[A-Z].*"))){
+            Toast.makeText(this,"Password must contain at list one big letter",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Save the user details and the selected image
         saveUserDetails(username, password, displayName);
@@ -84,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Display a toast or perform any other action to indicate successful registration
         Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     public void onAddPictureButtonClick(View view) {

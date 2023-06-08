@@ -14,8 +14,10 @@
     <string name="picture_reg">Picture</string>
     <string name="add_picture_button">Add picture</string>
     <string name="register_button">Register</string>
-    <string name="already_register">Already register?</string>
+    <string name="already_register">Already registered?</string>
     <string name="not_register">Not registered?</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="todo">TODO</string>
+    <string name="user_name">User Name</string>
 </resources>
