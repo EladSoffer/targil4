@@ -46,12 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         Button registerButton = findViewById(R.id.reg_btn);
         registerButton.setOnClickListener(v -> registerUser());
         TextView alreadyRegister = findViewById(R.id.already_register);
-        alreadyRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        alreadyRegister.setOnClickListener(v -> finish());
 
 
 
