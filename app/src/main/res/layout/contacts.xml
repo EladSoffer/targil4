@@ -4,26 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserActivity"
+    tools:context=".ListActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/sky">
+    >
 
     <LinearLayout
         android:id="@+id/layout_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#adadad">
 
 
     <ImageView
         android:id="@+id/user_image_profile_image"
         android:layout_width="80dp"
         android:layout_height="87dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="false"
         android:layout_marginEnd="20dp"
         tools:src="@drawable/ic_person" />
 
@@ -31,25 +28,23 @@
         android:id="@+id/user_text_user_name"
         android:layout_width="207dp"
         android:layout_height="87dp"
-        android:layout_alignTop="@id/user_image_profile_image"
-        android:layout_alignParentEnd="true"
         android:layout_marginEnd="120dp"
-        android:text="User Name"
-        android:textColor="@color/white"
-        android:textSize="25dp"
+        android:text="@string/user_name"
+        android:textColor="@color/black"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:gravity="center"/>
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="7dp"
-        android:layout_below="@id/layout_profile"
-        android:background="@color/black" />
 
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/friend" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@color/black" />
+
 </LinearLayout>
