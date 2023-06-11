@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="#adadad"
+        android:background="?attr/colorPrimary"
         android:text="@string/settings"
         android:textSize="50sp" />
 
@@ -72,7 +72,8 @@
             android:background="@color/white">
 
             <Button
-                android:id="@+id/choose_purple"
+                android:id="@+id/choose_gray"
+                android:backgroundTint="#ADADAD"
                 android:layout_width="100sp"
                 android:layout_height="50sp"
                 android:layout_marginStart="50sp"
@@ -81,11 +82,11 @@
             </Button>
 
             <Button
-                android:id="@+id/choose_blue"
+                android:id="@+id/choose_purple"
                 android:layout_width="100sp"
                 android:layout_height="50sp"
                 android:layout_marginStart="50sp"
-                android:backgroundTint="@color/custom_blue"
+                android:backgroundTint="#BF40BF"
                 tools:ignore="ButtonStyle,SpeakableTextPresentCheck">
 
             </Button>
