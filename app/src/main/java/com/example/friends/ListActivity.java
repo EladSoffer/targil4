@@ -52,7 +52,7 @@ public class ListActivity extends AppCompatActivity {
         });
 
         FloatingActionButton addBtn = findViewById(R.id.btnAdd);
-        settingsBtn.setOnClickListener(v -> {
+        addBtn.setOnClickListener(v -> {
             Intent intent = new Intent(ListActivity.this, Modal.class);
             startActivity(intent);
         });
