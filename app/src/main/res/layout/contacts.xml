@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#adadad"
     tools:context=".ListActivity">
 
     <LinearLayout
@@ -18,8 +19,8 @@
             android:layout_width="80dp"
             android:layout_height="87dp"
             android:layout_marginEnd="20dp"
-            tools:src="@drawable/ic_person"
-            android:contentDescription="@string/cur_user"/>
+            android:contentDescription="@string/cur_user"
+            tools:src="@drawable/ic_person" />
 
         <TextView
             android:id="@+id/user_text_user_name"
@@ -35,22 +36,26 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnSettings"
+        android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
+        android:layout_margin="16sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="16sp"
+        android:backgroundTint="#FF5733"
         android:contentDescription="@string/settings"
-        android:src="@drawable/settings"
-        tools:ignore="RelativeOverlap" />
+        android:src="@drawable/ic_exit"
+        tools:ignore="RelativeOverlap,DuplicateSpeakableTextCheck" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/layout_profile"
         android:layout_above="@+id/divider"
->
+        android:layout_below="@id/layout_profile">
 
         <ListView
             android:id="@+id/list_view"
@@ -59,13 +64,23 @@
             tools:listitem="@layout/friend" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|"
+            android:layout_margin="30sp"
+            android:contentDescription="@string/settings"
+            android:src="@drawable/settings"
+            tools:ignore="RelativeOverlap" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/add_contact"
-            android:src="@drawable/add"
             android:layout_gravity="bottom|end"
             android:layout_margin="30sp"
+            android:contentDescription="@string/add_contact"
+            android:src="@drawable/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -75,7 +90,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:background="@color/black"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/black" />
 
 </RelativeLayout>

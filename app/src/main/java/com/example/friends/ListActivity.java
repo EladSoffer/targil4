@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,12 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts);
+        FloatingActionButton settingsBtn = findViewById(R.id.btnSettings);
+        settingsBtn.setOnClickListener(v -> {
+
+            Intent intent = new Intent(ListActivity.this, SettingActivity.class);
+            startActivity(intent);
+        });
 
         ArrayList<User> users = new ArrayList<>();
 
