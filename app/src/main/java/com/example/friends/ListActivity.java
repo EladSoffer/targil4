@@ -80,18 +80,18 @@ public class ListActivity extends AppCompatActivity {
 
         ImageView userImageProfile = findViewById(R.id.user_image_profile_image);
         userImageProfile.setImageResource(R.drawable.neymar);
-//       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-//
-//                intent.putExtra("userName", userNames[i]);
-//                intent.putExtra("profilePicture", profilePictures[i]);
-//                intent.putExtra("lastMassage", lastMassages[i]);
-//                intent.putExtra("time", times[i]);
-//
-//                startActivity(intent);
-//            }
-//        });
+       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), chat.class);
+
+                intent.putExtra("userName", userNames[i]);
+                intent.putExtra("profilePicture", profilePictures[i]);
+                intent.putExtra("lastMassage", lastMassages[i]);
+                intent.putExtra("time", times[i]);
+
+                startActivity(intent);
+            }
+        });
     }
 }
