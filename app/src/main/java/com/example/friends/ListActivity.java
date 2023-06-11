@@ -50,8 +50,16 @@ public class ListActivity extends AppCompatActivity {
             Intent intent = new Intent(ListActivity.this, SettingActivity.class);
             startActivity(intent);
         });
+
+        FloatingActionButton addBtn = findViewById(R.id.btnAdd);
+        settingsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ListActivity.this, Modal.class);
+            startActivity(intent);
+        });
+
         FloatingActionButton user_exit = findViewById(R.id.logoutBtn);
         user_exit.setOnClickListener(v-> finish());
+
 
         ArrayList<User> users = new ArrayList<>();
 
