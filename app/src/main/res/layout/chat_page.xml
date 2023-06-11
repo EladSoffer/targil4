@@ -34,7 +34,34 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/exit_chat"
+        android:layout_width="90sp"
+        android:layout_height="90sp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_exit"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:importantForAccessibility="no"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_profile"
+        android:layout_above="@+id/send"
+        >
+        <ListView
+            android:id="@+id/msg_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/message" />
+    </FrameLayout>
+
+
     <LinearLayout
+        android:id="@+id/send"
         android:layout_width="match_parent"
         android:layout_height="75sp"
         android:gravity="bottom"

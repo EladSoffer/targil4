@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#adadad"
     tools:context=".ListActivity">
 
     <LinearLayout
         android:id="@+id/layout_profile"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:orientation="horizontal">
@@ -20,7 +19,8 @@
             android:layout_height="87dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/cur_user"
-            tools:src="@drawable/ic_person" />
+            tools:src="@drawable/ic_person"
+            />
 
         <TextView
             android:id="@+id/user_text_user_name"

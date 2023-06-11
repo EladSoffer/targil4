@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Friends"
         tools:targetApi="31">
+
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -21,15 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity">
-
-        </activity>
-        <activity android:name=".ListActivity">
-
-        </activity>
-        <activity android:name=".SettingActivity">
-
-        </activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".ListActivity"></activity>
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".Modal"></activity>
+        <activity android:name=".chat"></activity>
     </application>
 
 </manifest>

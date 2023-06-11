@@ -12,7 +12,7 @@
         android:text="@string/add"
         android:textAlignment="center"
         android:textSize="36sp"
-        android:background="#FFFFBB33"/>
+        android:background="?attr/colorPrimary"/>
 
     <EditText
         android:id="@+id/username"
@@ -34,14 +34,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Add"
-            android:id="@+id/addButton" />
+            android:id="@+id/addButton"
+            android:backgroundTint="@color/custom_blue"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Cancel"
-            android:id="@+id/cancelButton" />
+            android:id="@+id/cancelButton"
+            android:backgroundTint="#FF5733"
+            />
 
     </LinearLayout>
 
