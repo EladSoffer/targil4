@@ -2,6 +2,7 @@ package com.example.friends;
 
 import android.content.Context;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         }
         else {
             text.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_reciver));
+            text.setGravity(Gravity.END);
         }
 
 
