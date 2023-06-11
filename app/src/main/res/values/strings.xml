@@ -27,4 +27,5 @@
     <string name="edit_server_address">Edit server address:</string>
     <string name="choose_theme">choose theme:</string>
     <string name="add">Add Contact:</string>
+    <string name="enter_mes">enter message</string>
 </resources>

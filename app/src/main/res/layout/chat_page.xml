@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/chat_back"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/user_image_profile_image"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/cur_user"
+            tools:src="@drawable/ic_person" />
+
+        <TextView
+            android:id="@+id/user_text_user_name"
+            android:layout_width="207dp"
+            android:layout_height="87dp"
+            android:layout_marginEnd="120dp"
+            android:gravity="center"
+            android:text="@string/user_name"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        android:gravity="bottom"
+        android:background="?attr/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginEnd="72sp"
+            android:layout_marginStart="20sp"
+            android:hint="@string/enter_mes"
+            android:background="@drawable/rounded_corners_background"
+            android:paddingStart="20dp">
+        </EditText>
+
+
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10sp"
+        android:backgroundTint="#DAF7A6"
+        android:contentDescription="@string/settings"
+        android:src="@drawable/baseline_send_24"
+        tools:ignore="RelativeOverlap,DuplicateSpeakableTextCheck" />
+
+</RelativeLayout>
+
+
+
+
+
