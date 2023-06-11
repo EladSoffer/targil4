@@ -1,50 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListActivity"
-    android:orientation="vertical"
-    android:gravity="center"
-    >
+    android:background="#adadad"
+    tools:context=".ListActivity">
 
     <LinearLayout
         android:id="@+id/layout_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#adadad">
+        android:background="#adadad"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/user_image_profile_image"
+            android:layout_width="80dp"
+            android:layout_height="87dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/cur_user"
+            tools:src="@drawable/ic_person" />
 
-    <ImageView
-        android:id="@+id/user_image_profile_image"
-        android:layout_width="80dp"
-        android:layout_height="87dp"
-        android:layout_marginEnd="20dp"
-        tools:src="@drawable/ic_person" />
+        <TextView
+            android:id="@+id/user_text_user_name"
+            android:layout_width="207dp"
+            android:layout_height="87dp"
+            android:layout_marginEnd="120dp"
+            android:gravity="center"
+            android:text="@string/user_name"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/user_text_user_name"
-        android:layout_width="207dp"
-        android:layout_height="87dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/user_name"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_view"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="16sp"
+        android:backgroundTint="#FF5733"
+        android:contentDescription="@string/settings"
+        android:src="@drawable/ic_exit"
+        tools:ignore="RelativeOverlap,DuplicateSpeakableTextCheck" />
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/friend" />
+        android:layout_height="0dp"
+        android:layout_above="@+id/divider"
+        android:layout_below="@id/layout_profile">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/friend" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|"
+            android:layout_margin="30sp"
+            android:contentDescription="@string/settings"
+            android:src="@drawable/settings"
+            tools:ignore="RelativeOverlap" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="30sp"
+            android:contentDescription="@string/add_contact"
+            android:src="@drawable/add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </FrameLayout>
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="7dp"
+        android:layout_alignParentBottom="true"
         android:background="@color/black" />
 
-</LinearLayout>
+</RelativeLayout>

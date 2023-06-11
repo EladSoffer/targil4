@@ -20,4 +20,10 @@
     <string name="register">Register</string>
     <string name="todo">TODO</string>
     <string name="user_name">User Name</string>
+    <string name="add_contact">ADD CONTACT</string>
+    <string name="settings">settings</string>
+    <string name="cur_user">cur user</string>
+    <string name="enter_address">Enter address</string>
+    <string name="edit_server_address">Edit server address:</string>
+    <string name="choose_theme">choose theme:</string>
 </resources>
