@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -34,12 +36,21 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         }
         TextView text = convertView.findViewById(R.id.msg);
         text.setText(m.getContent());
+        RelativeLayout layout = convertView.findViewById(R.id.msg_layout);
+        LinearLayout l = convertView.findViewById(R.id.full_layout);
+        TextView time = convertView.findViewById(R.id.msg_time);
+
+
         if (Objects.equals(m.getSender(), "me")){
-            text.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_sender));
+            l.setGravity(Gravity.START);
+            time.setText(m.getTime());
+            layout.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_sender));
+
         }
         else {
-            text.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_reciver));
-            text.setGravity(Gravity.END);
+            l.setGravity(Gravity.END);
+            time.setText(m.getTime());
+            layout.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_reciver));
         }
 
 
