@@ -1,6 +1,14 @@
 package com.example.friends;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+@Entity
 public class User {
+    ///for now
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int id;
     private String userName;
     private int pictureId;
     private String lastMassage;
@@ -27,6 +35,15 @@ public class User {
 
     public String getUserName() {
         return userName;
+    }
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
     }
 }
 
