@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -15,29 +16,13 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
-    final private int[] profilePictures = {
-            R.drawable.kroos, R.drawable.neuer, R.drawable.ramos,
-            R.drawable.modric, R.drawable.muller,
-            R.drawable.mbappe, R.drawable.neymar, R.drawable.eran2
-    };
-
-    final private String[] userNames = {
-            "Toni Kroos", "Manuel Neuer", "Sergio Ramos", "Luka Modrić ", "Thomas Müller",
-            "Kylian Mbappe", "Neymar Jr", "Eran Levy",
-    };
-
-    final private String[] lastMassages = {
-            "Hi, how are you?", "24K Magic", "Missing Madrid :(", "Wanna hear a joke?", "Yo!",
-            "Well....", "Did you see the latest John Wick?",
-            "I'm the best!"
-    };
-
-    final private String[] times = {
-            "12:00", "00:30", "03:23", "08:59", "12:23", "22:54", "11:47", "10:04",
-    };
 
     ListView listView;
     CustomListAdapter adapter;
+    private AppDB db;
+    private ArrayList<User> users;
+
+    private UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,40 +42,64 @@ public class ListActivity extends AppCompatActivity {
         });
 
         FloatingActionButton user_exit = findViewById(R.id.logoutBtn);
-        user_exit.setOnClickListener(v-> finish());
+        user_exit.setOnClickListener(v -> finish());
 
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "Contacts")
+                .allowMainThreadQueries().build();
 
-        ArrayList<User> users = new ArrayList<>();
+        userDao = db.userDao();
+        handleUsers();
+        ImageView userImageProfile = findViewById(R.id.user_image_profile_image);
+        userImageProfile.setImageResource(R.drawable.neymar);
 
-        for (int i = 0; i < profilePictures.length; i++) {
-            User aUser = new User(
-                    userNames[i], profilePictures[i],
-                    lastMassages[i], times[i]
-            );
+    }
 
-            users.add(aUser);
-        }
-
+    private void handleUsers() {
         listView = findViewById(R.id.list_view);
+        users = new ArrayList<>();
         adapter = new CustomListAdapter(getApplicationContext(), users);
-
+        loadContacts();
         listView.setAdapter(adapter);
         listView.setClickable(true);
 
-        ImageView userImageProfile = findViewById(R.id.user_image_profile_image);
-        userImageProfile.setImageResource(R.drawable.neymar);
-       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /**
+
+         get into contact after pressing.
+         */
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                User selectedUser = users.get(i);
                 Intent intent = new Intent(getApplicationContext(), chat.class);
 
-                intent.putExtra("userName", userNames[i]);
-                intent.putExtra("profilePicture", profilePictures[i]);
-                intent.putExtra("lastMassage", lastMassages[i]);
-                intent.putExtra("time", times[i]);
+                intent.putExtra("userName", selectedUser.getUserName());
+                intent.putExtra("profilePicture", selectedUser.getPictureId());
+                intent.putExtra("lastMassage", selectedUser.getLastMassage());
+                intent.putExtra("time", selectedUser.getLastMassageSendingTime());
 
                 startActivity(intent);
             }
         });
+        listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            User selectedUser = users.get(i);
+            userDao.delete(selectedUser); // Remove the selected user from the database
+            users.remove(i); // Remove the user from the users list
+            adapter.notifyDataSetChanged(); // Update the ListView
+
+            return true; // Return true to consume the long press event
+        });
+
+    }
+
+    private void loadContacts() {
+        users.clear();
+        users.addAll(userDao.allUsers());
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadContacts();
     }
 }
