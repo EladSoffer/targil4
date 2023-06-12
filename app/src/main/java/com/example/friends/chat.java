@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 public class chat extends AppCompatActivity {
     final private String[] messages = {
-            "Hi, how are you?", "good", "you?", "great"
+            "Hi, how are you?", "good", "you?", "great","Hi, how are you?", "good", "you?", "great","Hi, how are you?", "good", "you?", "great"
     };
     final private String[] times = {
-            "12:00", "00:30", "03:23", "08:59"
+            "12:00", "00:30", "03:23", "08:59","12:00", "00:30", "03:23", "08:59","12:00", "00:30", "03:23", "03:05"
     };
     final private String[] senders = {
-            "me","him","him","me"
+            "me","him","him","me","me","him","him","me","me","him","him","me"
     };
 
     ImageView profile_pic;
@@ -61,6 +61,14 @@ public class chat extends AppCompatActivity {
 
         mess.setAdapter(chat_adapter);
         mess.setClickable(true);
+        scrollToLastMessage();
+    }
 
+    private void scrollToLastMessage() {
+        mess.post(() -> {
+            int lastItemPosition = mess.getAdapter().getCount() - 1;
+            mess.smoothScrollToPosition(lastItemPosition);
+        });
     }
 }
+
