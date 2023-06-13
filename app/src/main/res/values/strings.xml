@@ -11,4 +11,21 @@
     <string name="password_label">Password</string>
     <string name="display_name">Display name</string>
     <string name="enter_display_name">Enter display name</string>
+    <string name="picture_reg">Picture</string>
+    <string name="add_picture_button">Add picture</string>
+    <string name="register_button">Register</string>
+    <string name="already_register">Already registered?</string>
+    <string name="not_register">Not registered?</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="todo">TODO</string>
+    <string name="user_name">User Name</string>
+    <string name="add_contact">ADD CONTACT</string>
+    <string name="settings">settings</string>
+    <string name="cur_user">cur user</string>
+    <string name="enter_address">Enter address</string>
+    <string name="edit_server_address">Edit server address:</string>
+    <string name="choose_theme">choose theme:</string>
+    <string name="add">Add Contact:</string>
+    <string name="enter_mes">enter message</string>
 </resources>
