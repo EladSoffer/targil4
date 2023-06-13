@@ -6,12 +6,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 public class Modal extends AppCompatActivity {
 
-    private AppDB db;
-    private UserDao userDao;
+
     private UserViewModel userViewModel;
 
     @Override
@@ -20,10 +18,7 @@ public class Modal extends AppCompatActivity {
 
         setContentView(R.layout.add_contact);
 
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "Contacts")
-                .allowMainThreadQueries().build();
 
-        userDao = db.userDao();
         userViewModel = new UserViewModel(getApplicationContext());
 
         Button addBtn = findViewById(R.id.addButton);
