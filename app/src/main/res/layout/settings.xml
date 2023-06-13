@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_blue"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="?attr/colorPrimary"
+        android:text="@string/settings"
+        android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="20sp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/edit_address_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:text="@string/edit_server_address"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edit_server_address"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:autofillHints=""
+            android:background="#aed3d9"
+            android:ems="10"
+            android:hint="@string/enter_address"
+            android:inputType="text"
+            android:textColorHint="#455A64"
+            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="20sp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/edit_theme_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:text="@string/choose_theme"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="20sp"
+            android:paddingRight="15dp"
+            android:background="@color/white">
+
+            <Button
+                android:id="@+id/choose_gray"
+                android:backgroundTint="#ADADAD"
+                android:layout_width="100sp"
+                android:layout_height="50sp"
+                android:layout_marginStart="50sp"
+                tools:ignore="ButtonStyle,SpeakableTextPresentCheck">
+
+            </Button>
+
+            <Button
+                android:id="@+id/choose_purple"
+                android:layout_width="100sp"
+                android:layout_height="50sp"
+                android:layout_marginStart="50sp"
+                android:backgroundTint="#BF40BF"
+                tools:ignore="ButtonStyle,SpeakableTextPresentCheck">
+
+            </Button>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="20sp"
+            android:paddingRight="15dp">
+
+            <ImageButton
+                android:id="@+id/exit_settings"
+                android:layout_width="90sp"
+                android:layout_height="90sp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_exit"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

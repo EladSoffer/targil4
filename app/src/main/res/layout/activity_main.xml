@@ -4,16 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".RegisterActivity"
     android:background="@drawable/sky"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/Friends_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/Friedns_name"
+        android:textSize="50sp" />
+    <TextView
+        android:id="@+id/register_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/register"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -39,7 +46,7 @@
                 app:drawableLeftCompat="@drawable/ic_person" />
 
             <EditText
-                android:id="@+id/editTextText2"
+                android:id="@+id/edit_username_reg"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:autofillHints=""
@@ -69,7 +76,7 @@
                 app:drawableLeftCompat="@drawable/ic_password" />
 
             <EditText
-                android:id="@+id/editTextTextPassword3"
+                android:id="@+id/edit_password_reg"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:autofillHints=""
@@ -99,7 +106,7 @@
                 app:drawableLeftCompat="@drawable/ic_password" />
 
             <EditText
-                android:id="@+id/editTextTextPassword4"
+                android:id="@+id/confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:autofillHints=""
@@ -141,6 +148,75 @@
                 tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/picture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:text="@string/picture_reg"
+                android:textColor="#37474F"
+                android:textSize="20sp"
+                app:drawableLeftCompat="@drawable/ic_photo"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/submit_picture_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/add_picture_button"
+                android:onClick="onAddPictureButtonClick" />
+
+            <ImageView
+                android:id="@+id/selected_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:maxWidth="60dp"
+                android:layout_gravity="center"
+                android:maxHeight="60dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/todo" />
+        </LinearLayout>
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <Button
+                android:id="@+id/reg_btn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/custom_blue"
+                android:text="@string/register_button"
+                android:textColor="#212121"
+                android:textColorHighlight="@color/custom_blue"
+                android:textColorLink="@color/custom_blue"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/already_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="@string/already_register"
+            android:textColor="#0000FF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
