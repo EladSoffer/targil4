@@ -96,8 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Save the user details and the selected image
         saveUserDetails(username, password, displayName);
 
-        // Display a toast or perform any other action to indicate successful registration
-        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+
         finish();
     }
 
@@ -148,8 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Create an instance of MyUserApi
         MyUserApi userApi = new MyUserApi();
 
-        // Get the profile picture URI if available
-        String profilePictureUri = selectedImageUri != null ? selectedImageUri.toString() : "";
+
 
         // Convert the image to Base64 string
         String imageBase64 = "";
@@ -167,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Call the signup method of MyUserApi to send the user details and image to the server
         Call<Void> call = userApi.signup(username, password, displayName, imageBase64);
-        call.enqueue(new Callback<Void>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
