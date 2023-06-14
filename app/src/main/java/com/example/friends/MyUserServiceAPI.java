@@ -17,5 +17,5 @@ public interface MyUserServiceAPI {
     Call<Void> sign_up(@Body Map<String, String> user);
 
     @GET("Users/{id}")
-    Call<Map<String, String>> getUserDetails(@Header("Authorization") String token, @Path("id") String userId);
+    Call<Map<String, String>> getUserDetails(@Header("authorization") String token, @Path("id") String userId);
 }

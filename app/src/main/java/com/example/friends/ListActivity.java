@@ -2,9 +2,13 @@ package com.example.friends;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,8 +32,12 @@ public class ListActivity extends AppCompatActivity {
 
     private UserViewModel userViewModel;
 
+    Bitmap myPic;
+    String myName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getDetails();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts);
 
@@ -54,8 +62,9 @@ public class ListActivity extends AppCompatActivity {
 
         initializeListView();
 
-        ImageView userImageProfile = findViewById(R.id.user_image_profile_image);
-        userImageProfile.setImageResource(R.drawable.neymar);
+
+
+
     }
 
     private void initializeListView() {
@@ -104,7 +113,7 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    private void getDitaiels() {
+    private void getDetails() {
 
         // Validate input
 
@@ -119,23 +128,24 @@ public class ListActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Map<String, String> responseBody = response.body();
-
-                        Intent intent = new Intent(LoginActivity.this, ListActivity.class);
-                        startActivity(intent);
-
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Invalid response from server", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    String name = responseBody.get("displayName");
+                    String picture = responseBody.get("profilePic");
+                    Toast.makeText(ListActivity.this,name,Toast.LENGTH_SHORT).show();
+                    byte[] imageBytes = Base64.decode(picture, Base64.DEFAULT);
+                    myPic = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                    myName = name;
+                    ImageView userImageProfile = findViewById(R.id.user_image_profile_image);
+                    userImageProfile.setImageBitmap(myPic);
+                    TextView user_text_user_name = findViewById(R.id.user_text_user_name);
+                    user_text_user_name.setText(myName);
                 }
             }
 
+
             @Override
             public void onFailure(Call<Map<String, String>> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Login failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListActivity.this, "Get details: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
-
