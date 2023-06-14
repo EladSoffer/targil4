@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (password.length() < 8) {
+        if (password.length() < 1) {
             Toast.makeText(this, "Password must be at least 8 characters long", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -148,8 +148,6 @@ public class RegisterActivity extends AppCompatActivity {
         // Create an instance of MyUserApi
         MyUserApi userApi = new MyUserApi();
 
-        // Get the profile picture URI if available
-        String profilePictureUri = selectedImageUri != null ? selectedImageUri.toString() : "";
 
         // Convert the image to Base64 string
         String imageBase64 = "";
