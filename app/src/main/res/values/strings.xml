@@ -28,4 +28,5 @@
     <string name="choose_theme">choose theme:</string>
     <string name="add">Add Contact:</string>
     <string name="enter_mes">enter message</string>
+    <string name="BaseUrl">http://172.18.41.97:5000/api/</string>
 </resources>

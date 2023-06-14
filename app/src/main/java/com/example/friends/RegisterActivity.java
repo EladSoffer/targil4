@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (password.length() < 8) {
+        if (password.length() < 1) {
             Toast.makeText(this, "Password must be at least 8 characters long", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -96,7 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
         // Save the user details and the selected image
         saveUserDetails(username, password, displayName);
 
-
+        // Display a toast or perform any other action to indicate successful registration
+        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -148,7 +149,6 @@ public class RegisterActivity extends AppCompatActivity {
         MyUserApi userApi = new MyUserApi();
 
 
-
         // Convert the image to Base64 string
         String imageBase64 = "";
         if (selectedImageUri != null) {
@@ -165,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Call the signup method of MyUserApi to send the user details and image to the server
         Call<Void> call = userApi.signup(username, password, displayName, imageBase64);
-        call.enqueue(new Callback<>() {
+        call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
