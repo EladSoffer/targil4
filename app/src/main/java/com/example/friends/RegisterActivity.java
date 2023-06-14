@@ -97,7 +97,6 @@ public class RegisterActivity extends AppCompatActivity {
         saveUserDetails(username, password, displayName);
 
         // Display a toast or perform any other action to indicate successful registration
-        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
         finish();
     }
 

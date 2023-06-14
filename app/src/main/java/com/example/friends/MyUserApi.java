@@ -1,5 +1,8 @@
 package com.example.friends;
 
+import com.google.gson.Gson;
+
+import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -12,7 +15,7 @@ public class MyUserApi {
 
     public MyUserApi() {
 
-        String apiAddress = "http://192.168.197.78:5000/api/";
+        String apiAddress = "http://10.0.2.2:5000/api/";
         retrofit = new Retrofit.Builder().
                 baseUrl(apiAddress).
                 addConverterFactory(GsonConverterFactory.create()).
@@ -29,7 +32,10 @@ public class MyUserApi {
     }
 
     public Call<Map<String, String>> get_User_Details(String token, String userId) {
-        return userServiceAPI.getUserDetails("Bearer " + token, userId);
+        Map<String, String> tokenMap = new HashMap<>();
+        tokenMap.put("token", token);
+
+        return userServiceAPI.getUserDetails("Bearer " + new Gson().toJson(tokenMap), userId);
     }
 
 }
