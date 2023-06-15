@@ -76,18 +76,14 @@ public class ListActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), chat.class);
             intent.putExtra("userName", selectedUser.getUser().getDisplayName());
             intent.putExtra("profilePicture", selectedUser.getUser().getProfilePic());
-            intent.putExtra("lastMassage", selectedUser.getLastMessage().getContent());
-            intent.putExtra("time", selectedUser.getLastMessage().getCreated());
+            if (selectedUser.getLastMessage() != null) {
+                intent.putExtra("lastMassage", selectedUser.getLastMessage().getContent());
+                intent.putExtra("time", selectedUser.getLastMessage().getCreated());
+            }
             startActivity(intent);
         });
 
-        // Handle item long click events
-        listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            User selectedUser = users.get(i);
-            userViewModel.delete(selectedUser);
 
-            return true; // Return true to consume the long press event
-        });
 
         // Observe the user list from the ViewModel
         userViewModel.getUsers().observe(this, new Observer<List<User>>() {
