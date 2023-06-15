@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "977959429489",
+    "project_id": "friends-31879",
+    "storage_bucket": "friends-31879.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977959429489:android:0a722a5db212e763a182d0",
+        "android_client_info": {
+          "package_name": "com.example.friends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977959429489-1lmh1aif485mjs7jafee66d8ngq68rff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7qQpMo2MlB2x2BZ_g7nUdCvAlhAAGm_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977959429489-1lmh1aif485mjs7jafee66d8ngq68rff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

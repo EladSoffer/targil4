@@ -40,8 +40,7 @@ public class Modal extends AppCompatActivity {
             }, 5000);
             return;
         }
-        User user = new User(username, R.drawable.ic_person, null, null);
-        userViewModel.add(user);
+        userViewModel.add(username);
         finish();
     }
 }

@@ -147,23 +147,26 @@ public class RegisterActivity extends AppCompatActivity {
         // Create an instance of MyUserApi
         MyUserApi userApi = new MyUserApi();
 
-
         // Convert the image to Base64 string
-        String imageBase64 = "";
+        String imageDataUrl = "";
         if (selectedImageUri != null) {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                 byte[] imageBytes = byteArrayOutputStream.toByteArray();
-                imageBase64 = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                String base64Image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+                // Construct the data URL with the appropriate MIME type prefix
+                String mimeType = "image/jpeg"; // Replace with the actual MIME type of your image
+                imageDataUrl = "data:" + mimeType + ";base64," + base64Image;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
         // Call the signup method of MyUserApi to send the user details and image to the server
-        Call<Void> call = userApi.signup(username, password, displayName, imageBase64);
+        Call<Void> call = userApi.signup(username, password, displayName, imageDataUrl);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -184,4 +187,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
 }

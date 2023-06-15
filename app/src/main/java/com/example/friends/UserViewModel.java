@@ -21,14 +21,13 @@ public class UserViewModel extends ViewModel {
         return users;
     }
 
-    public void add(User user) {
+    public void add(String user) {
         repository.add(user);
     }
 
     public void delete(User user) {
         repository.delete(user);
     }
-
 
 
 }
