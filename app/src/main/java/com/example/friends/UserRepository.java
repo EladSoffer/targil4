@@ -13,21 +13,24 @@ public class UserRepository {
     private UserDao dao;
     private UserListData userListData;
 
+    private ContactAPI contactAPI;
+
     public UserRepository(Context context) {
         AppDB db = Room.databaseBuilder(context, AppDB.class, "Contacts")
                 .allowMainThreadQueries().build();
 
         dao = db.userDao();
         userListData = new UserListData();
+        contactAPI = new ContactAPI(userListData,dao,context);
     }
 
-    public void add(User user) {
-        dao.insert(user);
+    public void add(String user) {
+        contactAPI.insert(user);
         userListData.postValue(dao.allUsers());
     }
 
     public void delete(User user) {
-        dao.delete(user);
+        contactAPI.delete(user);
         userListData.postValue(dao.allUsers());
     }
 
@@ -43,7 +46,7 @@ public class UserRepository {
         protected void onActive() {
             super.onActive();
             new Thread(() -> {
-                userListData.postValue(dao.allUsers());
+                contactAPI.get();
             }).start();
         }
     }

@@ -1,16 +1,12 @@
 package com.example.friends;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +14,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -47,8 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> registerUser());
         TextView alreadyRegister = findViewById(R.id.already_register);
         alreadyRegister.setOnClickListener(v -> finish());
-
-
 
         // Initialize the image picker launcher
         imagePickerLauncher = registerForActivityResult(
@@ -80,23 +84,19 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(password.length() < 8){
-            Toast.makeText(this,"Password must be at list 8 chars",Toast.LENGTH_SHORT).show();
+        if (password.length() < 1) {
+            Toast.makeText(this, "Password must be at least 8 characters long", Toast.LENGTH_SHORT).show();
             return;
         }
-        if ( !(password.matches(".*[A-Z].*"))){
-            Toast.makeText(this,"Password must contain at list one big letter",Toast.LENGTH_SHORT).show();
+        if (!(password.matches(".*[A-Z].*"))) {
+            Toast.makeText(this, "Password must contain at least one uppercase letter", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Save the user details and the selected image
         saveUserDetails(username, password, displayName);
-        if (selectedImageUri != null) {
-            saveImage(selectedImageUri);
-        }
 
         // Display a toast or perform any other action to indicate successful registration
-        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -144,12 +144,48 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void saveUserDetails(String username, String password, String displayName) {
-        // Save the user details to a database or send them to a server
-        // Implement your logic here
+        // Create an instance of MyUserApi
+        MyUserApi userApi = new MyUserApi();
+
+        // Convert the image to Base64 string
+        String imageDataUrl = "";
+        if (selectedImageUri != null) {
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] imageBytes = byteArrayOutputStream.toByteArray();
+                String base64Image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+                // Construct the data URL with the appropriate MIME type prefix
+                String mimeType = "image/jpeg"; // Replace with the actual MIME type of your image
+                imageDataUrl = "data:" + mimeType + ";base64," + base64Image;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Call the signup method of MyUserApi to send the user details and image to the server
+        Call<Void> call = userApi.signup(username, password, displayName, imageDataUrl);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    // Registration successful, perform any additional actions or display a toast message
+                    Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    // Registration failed, handle the error (e.g., display an error message)
+                    Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Handle the failure (e.g., display an error message)
+                Toast.makeText(RegisterActivity.this, "Registration failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void saveImage(Uri imageUri) {
-        // Save the image using the selectedImageUri
-        // Implement your image-saving logic here
-    }
 }

@@ -1,7 +1,10 @@
 package com.example.friends;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -38,9 +41,14 @@ public class chat extends AppCompatActivity {
         Intent activity = getIntent();
 
         if (activity != null){
+            String picture = activity.getStringExtra("profilePicture");
+            if (picture != null && picture.startsWith("data:image/jpeg;base64,")) {
+                picture = picture.replace("data:image/jpeg;base64,", "");
+                byte[] imageBytes = Base64.decode(picture, Base64.DEFAULT);
+                Bitmap myPic = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                profile_pic.setImageBitmap(myPic);
+            }
             String name = activity.getStringExtra("userName");
-            int img = activity.getIntExtra("profilePicture",R.drawable.ic_person);
-            profile_pic.setImageResource(img);
             user_name.setText(name);
         }
         ImageButton exit = findViewById(R.id.exit_chat);
