@@ -63,8 +63,6 @@ public class ListActivity extends AppCompatActivity {
         initializeListView();
 
 
-
-
     }
 
     private void initializeListView() {
@@ -76,10 +74,10 @@ public class ListActivity extends AppCompatActivity {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             User selectedUser = users.get(i);
             Intent intent = new Intent(getApplicationContext(), chat.class);
-            intent.putExtra("userName", selectedUser.getUserName());
-            intent.putExtra("profilePicture", selectedUser.getPictureId());
-            intent.putExtra("lastMassage", selectedUser.getLastMassage());
-            intent.putExtra("time", selectedUser.getLastMassageSendingTime());
+            intent.putExtra("userName", selectedUser.getUser().getDisplayName());
+            intent.putExtra("profilePicture", selectedUser.getUser().getProfilePic());
+            intent.putExtra("lastMassage", selectedUser.getLastMessage().getContent());
+            intent.putExtra("time", selectedUser.getLastMessage().getCreated());
             startActivity(intent);
         });
 
@@ -130,12 +128,20 @@ public class ListActivity extends AppCompatActivity {
                     Map<String, String> responseBody = response.body();
                     String name = responseBody.get("displayName");
                     String picture = responseBody.get("profilePic");
-                    Toast.makeText(ListActivity.this,name,Toast.LENGTH_SHORT).show();
+
+                    // Remove the data URL prefix if present
+                    if (picture.startsWith("data:image/jpeg;base64,")) {
+                        picture = picture.replace("data:image/jpeg;base64,", "");
+                    }
+
+                    Toast.makeText(ListActivity.this, "Hello " +name, Toast.LENGTH_SHORT).show();
                     byte[] imageBytes = Base64.decode(picture, Base64.DEFAULT);
                     myPic = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
                     myName = name;
+
                     ImageView userImageProfile = findViewById(R.id.user_image_profile_image);
                     userImageProfile.setImageBitmap(myPic);
+
                     TextView user_text_user_name = findViewById(R.id.user_text_user_name);
                     user_text_user_name.setText(myName);
                 }
