@@ -81,4 +81,3 @@ public class CustomListAdapter extends ArrayAdapter<User> {
         return fmt.format(date1).equals(fmt.format(date2));
     }
 }
-
