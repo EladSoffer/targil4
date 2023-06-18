@@ -5,7 +5,6 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.webkit.WebMessage;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -31,13 +30,14 @@ public class messagesAPI {
 
     public messagesAPI(MutableLiveData<List<Message>> m, messageDao d, Context con) {
         this.postListData = m;
-        String apiAddress = "http://192.168.137.78:5000/api/";
+        String apiAddress = "http://10.0.2.2:5001/api/";
         retrofit = new Retrofit.Builder().
                 baseUrl(apiAddress).
                 addConverterFactory(GsonConverterFactory.create()).
                 build();
         webMessageAPI = retrofit.create(WebMessageAPI.class);
         this.context = con;
+        this.dao =d;
     }
 
     public void get(String chatId) {

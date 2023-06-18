@@ -24,10 +24,10 @@ public class UserRepository {
         contactAPI = new ContactAPI(userListData,dao,context);
     }
 
-//    public void add(String user) {
-//        contactAPI.insert(user);
-//        userListData.postValue(dao.allUsers());
-//    }
+    public void add(String user) {
+        contactAPI.insert(user);
+        userListData.postValue(dao.allUsers());
+    }
 
     public void delete(User user) {
         contactAPI.delete(user);

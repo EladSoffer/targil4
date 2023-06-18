@@ -10,16 +10,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class chat extends AppCompatActivity {
 
@@ -41,7 +37,8 @@ public class chat extends AppCompatActivity {
         Intent activity = getIntent();
 
         if (activity != null){
-            String picture = activity.getStringExtra("profilePicture");
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("profilePicture", MODE_PRIVATE);
+            String picture = sharedPreferences.getString("profilePicture", "");
             if (picture != null && picture.startsWith("data:image/jpeg;base64,")) {
                 picture = picture.replace("data:image/jpeg;base64,", "");
                 byte[] imageBytes = Base64.decode(picture, Base64.DEFAULT);

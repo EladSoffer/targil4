@@ -16,7 +16,7 @@ public class MyUserApi {
 
     public MyUserApi() {
 
-        String apiAddress = "http://192.168.137.78:5000/api/";
+        String apiAddress = "http://10.0.2.2:5001/api/";
         retrofit = new Retrofit.Builder().
                 baseUrl(apiAddress).
                 addConverterFactory(GsonConverterFactory.create()).

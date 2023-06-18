@@ -75,7 +75,12 @@ public class ListActivity extends AppCompatActivity {
             User selectedUser = users.get(i);
             Intent intent = new Intent(getApplicationContext(), chat.class);
             intent.putExtra("userName", selectedUser.getUser().getDisplayName());
-            intent.putExtra("profilePicture", selectedUser.getUser().getProfilePic());
+            ///check
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("profilePicture", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putString("profilePicture", selectedUser.getUser().getProfilePic());
+            edit.apply();
+
             SharedPreferences s =getApplicationContext().getSharedPreferences("contactID",MODE_PRIVATE);
             SharedPreferences.Editor editor = s.edit();
             editor.putString("contactID",selectedUser.getId());
