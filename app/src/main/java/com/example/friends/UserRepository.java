@@ -46,9 +46,16 @@ public class UserRepository {
         protected void onActive() {
             super.onActive();
             new Thread(() -> {
-                contactAPI.get();
+                try {
+                    Thread.sleep(500); // Sleep for 1 second
+                    contactAPI.get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }).start();
         }
+
+
     }
 
     public LiveData<List<User>> getAll() {

@@ -4,17 +4,12 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
-import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,8 +64,7 @@ public class ContactAPI {
 
                     // Insert new list of users
                     List<User> userList = response.body();
-                    Log.d("SSSSSSS", "Response Body: " + new Gson().toJson(userList));
-                    writeResponseToFile(new Gson().toJson(userList));
+
                     for (User user : userList) {
                         dao.insert(user);
                     }
@@ -81,23 +75,38 @@ public class ContactAPI {
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-                Log.e("API Call", "Failed: " + t.getMessage());            }
+
+            }
         });
     }
 
-    public void insert(User user) {
 
+    public void insert(String user) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
+        Map<String, String> tokenMap = new HashMap<>();
+        tokenMap.put("token", token);
+
+        Call<Void> call = webServiceAPI.addUser("Bearer " + new Gson().toJson(tokenMap), Map.of("username", user));
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    //get();
+                } else {
+                    Toast.makeText(context, "Failed to add user", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, "Failed to add user", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     public void delete(User user) {
-    }
-    private void writeResponseToFile(String responseBody) {
-        File file = new File(Environment.getExternalStorageDirectory(), "response.txt");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(responseBody);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 

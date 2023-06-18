@@ -80,16 +80,11 @@ public class ListActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = s.edit();
             editor.putString("contactID",selectedUser.getId());
             editor.apply();
+
             startActivity(intent);
         });
 
-        // Handle item long click events
-        listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            User selectedUser = users.get(i);
-            userViewModel.delete(selectedUser);
 
-            return true; // Return true to consume the long press event
-        });
 
         // Observe the user list from the ViewModel
         userViewModel.getUsers().observe(this, new Observer<List<User>>() {
