@@ -34,7 +34,7 @@ public class ContactAPI {
     public ContactAPI(MutableLiveData<List<User>> postListData, UserDao dao ,Context con) {
         this.postListData = postListData;
         this.dao = dao;
-        String apiAddress = "http://10.0.2.2:5000/api/";
+        String apiAddress = "http://192.168.137.78:5000/api/";
         retrofit = new Retrofit.Builder().
                 baseUrl(apiAddress).
                 addConverterFactory(GsonConverterFactory.create()).
@@ -79,6 +79,7 @@ public class ContactAPI {
             }
         });
     }
+
 
     public void insert(String user) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("token", Context.MODE_PRIVATE);

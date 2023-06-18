@@ -1,5 +1,6 @@
 package com.example.friends;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -18,4 +19,7 @@ public interface MyUserServiceAPI {
 
     @GET("Users/{id}")
     Call<Map<String, String>> getUserDetails(@Header("authorization") String token, @Path("id") String userId);
+
+    @GET("/api/Chats/{id}/Messages")
+    Call<List<Message>> getMessages(@Header("authorization") String token, @Path("id") String userId);
 }

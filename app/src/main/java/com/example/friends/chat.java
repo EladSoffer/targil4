@@ -1,6 +1,7 @@
 package com.example.friends;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,27 +10,26 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class chat extends AppCompatActivity {
-    final private String[] messages = {
-            "Hi, how are you?", "good", "you?", "great","Hi, how are you?", "good", "you?", "great","Hi, how are you?", "good", "you?", "great"
-    };
-    final private String[] times = {
-            "12:00", "00:30", "03:23", "08:59","12:00", "00:30", "03:23", "08:59","12:00", "00:30", "03:23", "03:05"
-    };
-    final private String[] senders = {
-            "me","him","him","me","me","him","him","me","me","him","him","me"
-    };
 
     ImageView profile_pic;
     TextView user_name;
-
+    private ArrayList<Message> messages1;
     ListView mess;
     ChatListAdapter chat_adapter;
+
+    private MessageViewModel messageViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,21 +54,15 @@ public class chat extends AppCompatActivity {
         ImageButton exit = findViewById(R.id.exit_chat);
         exit.setOnClickListener(v -> finish());
 
-        ArrayList<Message> chat_messages = new ArrayList<>();
 
-        for (int i = 0; i < senders.length; i++) {
-            Message mes = new Message(
-                    messages[i], times[i],
-                    senders[i]
-            );
+        messageViewModel = new MessageViewModel(getApplicationContext());
 
-            chat_messages.add(mes);
-        }
-        mess = findViewById(R.id.msg_list);
-        chat_adapter = new ChatListAdapter(getApplicationContext(), chat_messages);
+        messages1 = new ArrayList<>();
 
-        mess.setAdapter(chat_adapter);
-        mess.setClickable(true);
+        chat_adapter = new ChatListAdapter(getApplicationContext(), messages1);
+
+        initializeListView();
+
         scrollToLastMessage();
     }
 
@@ -78,5 +72,23 @@ public class chat extends AppCompatActivity {
             mess.smoothScrollToPosition(lastItemPosition);
         });
     }
+
+
+    private void initializeListView() {
+        mess = findViewById(R.id.msg_list);
+        mess.setAdapter(chat_adapter);
+
+
+        // Observe the user list from the ViewModel
+        messageViewModel.getMessages().observe(this, new Observer<List<Message>>() {
+            @Override
+            public void onChanged(List<Message> messages) {
+                messages1.clear();
+                messages1.addAll(messages);
+                chat_adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
 }
 
