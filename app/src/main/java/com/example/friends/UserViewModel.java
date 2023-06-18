@@ -25,9 +25,6 @@ public class UserViewModel extends ViewModel {
         repository.add(user);
     }
 
-    public void delete(User user) {
-        repository.delete(user);
-    }
 
 
 }
