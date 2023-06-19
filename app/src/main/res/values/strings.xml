@@ -23,10 +23,11 @@
     <string name="add_contact">ADD CONTACT</string>
     <string name="settings">settings</string>
     <string name="cur_user">cur user</string>
-    <string name="enter_address">Enter address</string>
+    <string name="enter_address">Enter address-"ip:port"</string>
     <string name="edit_server_address">Edit server address:</string>
     <string name="choose_theme">choose theme:</string>
     <string name="add">Add Contact:</string>
     <string name="enter_mes">enter message</string>
     <string name="BaseUrl">http://172.18.41.97:5000/api/</string>
+    <string name="change">change</string>
 </resources>

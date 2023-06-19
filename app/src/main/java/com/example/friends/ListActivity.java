@@ -41,11 +41,6 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts);
 
-        FloatingActionButton settingsBtn = findViewById(R.id.btnSettings);
-        settingsBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ListActivity.this, SettingActivity.class);
-            startActivity(intent);
-        });
 
         FloatingActionButton addBtn = findViewById(R.id.btnAdd);
         addBtn.setOnClickListener(v -> {
@@ -117,7 +112,7 @@ public class ListActivity extends AppCompatActivity {
 
         // Validate input
 
-        MyUserApi userApi = new MyUserApi();
+        MyUserApi userApi = new MyUserApi(getApplicationContext());
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("token", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         String username = sharedPreferences.getString("userName", "");

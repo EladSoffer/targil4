@@ -1,5 +1,10 @@
 package com.example.friends;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -14,9 +19,10 @@ public class MyUserApi {
     Retrofit retrofit;
     MyUserServiceAPI userServiceAPI;
 
-    public MyUserApi() {
-
-        String apiAddress = "http://10.0.2.2:5001/api/";
+    public MyUserApi(Context c) {
+        SharedPreferences sharedPreferences = c.getSharedPreferences("server_port", MODE_PRIVATE);
+        String server = sharedPreferences.getString("server", "");
+        String apiAddress = "http://"+ server +"/api/";
         retrofit = new Retrofit.Builder().
                 baseUrl(apiAddress).
                 addConverterFactory(GsonConverterFactory.create()).

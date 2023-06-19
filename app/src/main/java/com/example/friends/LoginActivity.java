@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.Map;
 
 import retrofit2.Call;
@@ -21,6 +23,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        SharedPreferences sh =getApplicationContext().getSharedPreferences("server_port",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sh.edit();
+        editor.putString("server","10.0.2.2:5000");
+        editor.apply();
 
         Button loginBtn = findViewById(R.id.log_btn);
         loginBtn.setOnClickListener(v -> login());
@@ -30,6 +36,11 @@ public class LoginActivity extends AppCompatActivity {
         notRegistered.setOnClickListener(v -> {
             // Open registration activity
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+        FloatingActionButton settingsBtn = findViewById(R.id.btnSettings);
+        settingsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
             startActivity(intent);
         });
     }
@@ -58,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Validate input
 
-        MyUserApi userApi = new MyUserApi();
+        MyUserApi userApi = new MyUserApi(getApplicationContext());
         Call<Map<String, String>> call = userApi.sign_in(username, password);
         call.enqueue(new Callback<Map<String, String>>() {
             @Override
@@ -76,6 +87,10 @@ public class LoginActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(LoginActivity.this, ListActivity.class);
                         startActivity(intent);
+                        EditText usernameEditText = findViewById(R.id.username_log);
+                        EditText passwordEditText = findViewById(R.id.password_log);
+                        usernameEditText.setText("");
+                        passwordEditText.setText("");
 
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid response from server", Toast.LENGTH_SHORT).show();

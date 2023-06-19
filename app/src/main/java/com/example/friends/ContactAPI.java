@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,9 +33,11 @@ public class ContactAPI {
 
 
     public ContactAPI(MutableLiveData<List<User>> postListData, UserDao dao ,Context con) {
+        SharedPreferences sharedPreferences = con.getSharedPreferences("server_port", MODE_PRIVATE);
+        String server = sharedPreferences.getString("server", "");
+        String apiAddress = "http://"+ server +"/api/";
         this.postListData = postListData;
         this.dao = dao;
-        String apiAddress = "http://10.0.2.2:5001/api/";
         retrofit = new Retrofit.Builder().
                 baseUrl(apiAddress).
                 addConverterFactory(GsonConverterFactory.create()).
@@ -43,7 +46,8 @@ public class ContactAPI {
         this.context = con;
     }
 
-    public void get() {
+    public CompletableFuture<Integer> get() {
+        CompletableFuture<Integer> future =new CompletableFuture<>();
         SharedPreferences sharedPreferences = context.getSharedPreferences("token", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         Map<String, String> tokenMap = new HashMap<>();
@@ -54,6 +58,9 @@ public class ContactAPI {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 new Thread(() -> {
+                    if (response.body() == null){
+                        return;
+                    }
                     // Delete all existing users
                     List<User> existingUsers = dao.allUsers();
 
@@ -64,24 +71,31 @@ public class ContactAPI {
 
                     // Insert new list of users
                     List<User> userList = response.body();
+                    if (userList.isEmpty()){
+                        return;
+                    }
 
                     for (User user : userList) {
                         dao.insert(user);
                     }
 
                     postListData.postValue(dao.allUsers());
+                    future.complete(1);
                 }).start();
+
             }
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-
+                    future.complete(-1);
             }
         });
+        return future;
     }
 
 
-    public void insert(String user) {
+    public CompletableFuture<Integer> insert(String user) {
+        CompletableFuture<Integer> s = new CompletableFuture<>();
         SharedPreferences sharedPreferences = context.getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         Map<String, String> tokenMap = new HashMap<>();
@@ -92,17 +106,20 @@ public class ContactAPI {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    //get();
+                    s.complete(1);
                 } else {
                     Toast.makeText(context, "Failed to add user", Toast.LENGTH_SHORT).show();
+                    s.complete(-1);
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(context, "Failed to add user", Toast.LENGTH_SHORT).show();
+                s.complete(-1);
             }
         });
+        return s;
     }
 
 

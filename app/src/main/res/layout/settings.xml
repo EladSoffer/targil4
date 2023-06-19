@@ -44,6 +44,15 @@
             android:inputType="text"
             android:textColorHint="#455A64"
             tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+        <Button
+            android:id="@+id/change_server_add"
+            android:backgroundTint="#00FF00"
+            android:text="@string/change"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            tools:ignore="ButtonStyle,SpeakableTextPresentCheck"/>
 
     </LinearLayout>
 

@@ -1,7 +1,6 @@
 package com.example.friends;
 
 import android.content.Context;
-import android.view.View;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -23,6 +22,6 @@ public class MessageViewModel extends ViewModel {
     }
 
     public void add(String mes){
-
+        repository.add(mes);
     }
 }

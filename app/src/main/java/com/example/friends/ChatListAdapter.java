@@ -45,17 +45,18 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         RelativeLayout layout = convertView.findViewById(R.id.msg_layout);
         LinearLayout l = convertView.findViewById(R.id.full_layout);
         TextView time = convertView.findViewById(R.id.msg_time);
+        String hour = m.getCreated().substring(11, 16);
 
 
         if (Objects.equals(m.getSender().getUsername(), username)){
             l.setGravity(Gravity.START);
-            time.setText(m.getCreated());
+            time.setText(hour);
             layout.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_sender));
 
         }
         else {
             l.setGravity(Gravity.END);
-            time.setText(m.getCreated());
+            time.setText(hour);
             layout.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corners_reciver));
         }
 
