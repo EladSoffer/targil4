@@ -41,11 +41,6 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts);
 
-        FloatingActionButton settingsBtn = findViewById(R.id.btnSettings);
-        settingsBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ListActivity.this, SettingActivity.class);
-            startActivity(intent);
-        });
 
         FloatingActionButton addBtn = findViewById(R.id.btnAdd);
         addBtn.setOnClickListener(v -> {
@@ -75,7 +70,12 @@ public class ListActivity extends AppCompatActivity {
             User selectedUser = users.get(i);
             Intent intent = new Intent(getApplicationContext(), chat.class);
             intent.putExtra("userName", selectedUser.getUser().getDisplayName());
-            intent.putExtra("profilePicture", selectedUser.getUser().getProfilePic());
+            ///check
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("profilePicture", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putString("profilePicture", selectedUser.getUser().getProfilePic());
+            edit.apply();
+
             SharedPreferences s =getApplicationContext().getSharedPreferences("contactID",MODE_PRIVATE);
             SharedPreferences.Editor editor = s.edit();
             editor.putString("contactID",selectedUser.getId());
@@ -112,7 +112,7 @@ public class ListActivity extends AppCompatActivity {
 
         // Validate input
 
-        MyUserApi userApi = new MyUserApi();
+        MyUserApi userApi = new MyUserApi(getApplicationContext());
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("token", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         String username = sharedPreferences.getString("userName", "");

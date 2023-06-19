@@ -145,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void saveUserDetails(String username, String password, String displayName) {
         // Create an instance of MyUserApi
-        MyUserApi userApi = new MyUserApi();
+        MyUserApi userApi = new MyUserApi(getApplication());
 
         // Convert the image to Base64 string
         String imageDataUrl = "";

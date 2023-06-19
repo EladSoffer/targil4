@@ -21,9 +21,9 @@ public class UserViewModel extends ViewModel {
         return users;
     }
 
-//    public void add(String user) {
-//        repository.add(user);
-//    }
+    public void add(String user) {
+        repository.add(user);
+    }
 
 
 

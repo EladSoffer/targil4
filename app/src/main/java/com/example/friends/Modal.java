@@ -40,7 +40,7 @@ public class Modal extends AppCompatActivity {
             }, 5000);
             return;
         }
-//        userViewModel.add(username);
+        userViewModel.add(username);
         finish();
     }
 }

@@ -8,6 +8,7 @@ import androidx.room.Room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class UserRepository {
     private UserDao dao;
@@ -24,10 +25,13 @@ public class UserRepository {
         contactAPI = new ContactAPI(userListData,dao,context);
     }
 
-//    public void add(String user) {
-//        contactAPI.insert(user);
-//        userListData.postValue(dao.allUsers());
-//    }
+    public void add(String user) {
+        CompletableFuture<Integer> s = contactAPI.insert(user);
+        s.thenAccept(a->{
+            userListData.postValue(dao.allUsers());
+        });
+
+    }
 
     public void delete(User user) {
         contactAPI.delete(user);
@@ -46,12 +50,13 @@ public class UserRepository {
         protected void onActive() {
             super.onActive();
             new Thread(() -> {
-                try {
-                    Thread.sleep(500); // Sleep for 1 second
-                    contactAPI.get();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+                    CompletableFuture<Integer> future=contactAPI.get();
+                    future.thenAccept(v->{
+                        userListData.postValue(dao.allUsers());
+                    });
+
+
             }).start();
         }
 
