@@ -5,7 +5,7 @@ This is exercise 4 in Advanced Programming 2 course.
 Friends is a simple chat application on android between users.
 The app allows users to register and create an account, log in, and start conversations with other registered users.
 
-There are 4 pages:
+There are 4 pages:<br />
 ![image](https://github.com/EladSoffer/targil4/assets/116814174/92ebd3a9-7cb5-4886-9a1e-906ec603e860)
 <br />
 
