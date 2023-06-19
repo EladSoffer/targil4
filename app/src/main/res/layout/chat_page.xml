@@ -73,6 +73,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/new_message_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10sp"
@@ -86,13 +87,17 @@
 
 
     </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/logoutBtn"
+        android:id="@+id/sen_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
         android:backgroundTint="#DAF7A6"
         android:contentDescription="@string/settings"
         android:src="@drawable/baseline_send_24"

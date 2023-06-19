@@ -1,8 +1,14 @@
 package com.example.friends;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -13,9 +19,10 @@ public class MyUserApi {
     Retrofit retrofit;
     MyUserServiceAPI userServiceAPI;
 
-    public MyUserApi() {
-
-        String apiAddress = "http://10.0.2.2:5000/api/";
+    public MyUserApi(Context c) {
+        SharedPreferences sharedPreferences = c.getSharedPreferences("server_port", MODE_PRIVATE);
+        String server = sharedPreferences.getString("server", "");
+        String apiAddress = "http://"+ server +"/api/";
         retrofit = new Retrofit.Builder().
                 baseUrl(apiAddress).
                 addConverterFactory(GsonConverterFactory.create()).
@@ -37,5 +44,13 @@ public class MyUserApi {
 
         return userServiceAPI.getUserDetails("Bearer " + new Gson().toJson(tokenMap), userId);
     }
+
+    public Call<List<Message>> getMessages(String token, String userId) {
+        Map<String, String> tokenMap = new HashMap<>();
+        tokenMap.put("token", token);
+
+        return userServiceAPI.getMessages("Bearer " + new Gson().toJson(tokenMap), userId);
+    }
+
 
 }
