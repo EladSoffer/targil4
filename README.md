@@ -41,7 +41,7 @@ The chat page is where users can engage in real-time conversations with their fr
 The interface displays the conversation history, including sent and received messages,
 with timestamps indicating when the messages were sent or received.
 
-How to Run
+##How to Run
 Clone the repository.
 
 Open a terminal and navigate to the root directory of the project.
