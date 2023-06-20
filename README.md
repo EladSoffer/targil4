@@ -16,7 +16,7 @@ The app allows users to register and create an account, log in, and start conver
 The register page is where users can create a new account by providing their information and clicking the submit button.
 The password must contain at least one uppercase letter and be at least 8 characters long. If a user already has an account, they can click the "Click here" button to navigate to the login page.
 
-![image](https://github.com/EladSoffer/targil4/assets/116814174/36fd0ebc-2443-4a8c-9ffc-f3c3124809c1)
+<img src="https://github.com/EladSoffer/targil4/assets/116814174/36fd0ebc-2443-4a8c-9ffc-f3c3124809c1" atl="Image" width="200" height="400">
 
 
 **Login page-**
