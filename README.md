@@ -25,7 +25,7 @@ The login page allows registered users to log in to their accounts by entering t
 Only after entering the correct username and password, the user will be redirected to the chat page.
 If a user doesn't have an account yet, they can click the "Click here" button to navigate to the registration page.
 
-![image](https://github.com/EladSoffer/targil4/assets/116814174/2641a6bb-f1be-4d99-9e22-055ca656228c)
+<img src="https://github.com/EladSoffer/targil4/assets/116814174/2641a6bb-f1be-4d99-9e22-055ca656228c" atl="Image" width="200" height="400">
 
 
 **Contacts page-**
@@ -34,7 +34,7 @@ Users can add new conversations by clicking the "Add Contact" button and initiat
 Users can switch between conversations by selecting the person they want to talk to.
 To log out, users can click the "Logout" button located at the top-left corner of the screen.
 
-![image](https://github.com/EladSoffer/targil4/assets/116814174/418179ba-f850-4a5f-a39e-be98d0afefdf)
+<img src="https://github.com/EladSoffer/targil4/assets/116814174/418179ba-f850-4a5f-a39e-be98d0afefdf" atl="Image" width="200" height="400">
 
 
 **Chat page-**
@@ -43,7 +43,7 @@ The chat page is where users can engage in real-time conversations with their fr
 The interface displays the conversation history, including sent and received messages,
 with timestamps indicating when the messages were sent or received.
 
-![image](https://github.com/EladSoffer/targil4/assets/116814174/664a9abf-0c2c-4656-b8df-f4bfd69862c0)
+<img src="https://github.com/EladSoffer/targil4/assets/116814174/664a9abf-0c2c-4656-b8df-f4bfd69862c0" atl="Image" width="200" height="400">
 
 **Setting page-**
 
