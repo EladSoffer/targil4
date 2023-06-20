@@ -7,7 +7,8 @@ The app allows users to register and create an account, log in, and start conver
 
 # There are 5  pages:
 
-![image](https://github.com/EladSoffer/targil4/assets/116814174/92ebd3a9-7cb5-4886-9a1e-906ec603e860)
+<img src="https://github.com/EladSoffer/targil4/assets/116814174/92ebd3a9-7cb5-4886-9a1e-906ec603e860" alt="Image" width="200" height="200">
+
 <br />
 
 **Register page-**
