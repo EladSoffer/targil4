@@ -51,19 +51,21 @@ The settings page can be accessed by clicking the ⚙️ icon on the login page.
 
 
 ## How to Run
-1. Clone the repository.
+1. Installing and Running the server: go to [my server](https://github.com/EladSoffer/targil3) and follow the instructions to run the server.
 
-2. Open Android Studio.
+2. Clone the repository.
 
-3. Click on "Open an Existing Project" and navigate to the cloned repository directory. Select the project and click "OK" to open it.
+3. Open Android Studio.
 
-4. connect your Android device to your computer or set up an emulator in Android Studio.
+4. Click on "Open an Existing Project" and navigate to the cloned repository directory. Select the project and click "OK" to open it.
 
-5.Build and run the project:
+5. connect your Android device to your computer or set up an emulator in Android Studio.
+
+6. Build and run the project:
     *If you are using a physical device, make sure USB debugging is enabled in the developer options, then click on the green play button in Android Studio and     select your device from the list.
     *If you are using an emulator, click on the green play button in Android Studio and select the desired emulator from the list.
 
-6.  The application will be installed and launched on the selected device or emulator. You can now use the Friends chat application to register, log in, and start conversations with other users.
+7.  The application will be installed and launched on the selected device or emulator. You can now use the Friends chat application to register, log in, and start conversations with other users.
 
 
 
