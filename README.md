@@ -47,13 +47,22 @@ with timestamps indicating when the messages were sent or received.
 
 **Setting page-**
 
-The settings page is a page that you can get to by presssing the ⚙️ in the Login page.
+The settings page can be accessed by clicking the ⚙️ icon on the login page. In this page, users can customize the app's theme according to their preference. By default, the app is configured to use the IP address 10.0.0.2 and port 5000 for the server. If you are not using the Android Studio emulator, you don't need to change the IP. However, if you are using the emulator, you can find the current IP by opening the terminal and entering the command 'ipconfig'.
 
 
 ## How to Run
 1. Clone the repository.
 
-2. Open a terminal and navigate to the root directory of the project.
+2. Open Android Studio.
 
+3. Click on "Open an Existing Project" and navigate to the cloned repository directory. Select the project and click "OK" to open it.
+
+4. connect your Android device to your computer or set up an emulator in Android Studio.
+
+5. Build and run the project:
+    *If you are using a physical device, make sure USB debugging is enabled in the developer options, then click on the green play button in Android Studio and     select your device from the list.
+    *If you are using an emulator, click on the green play button in Android Studio and select the desired emulator from the list.
+
+6.The application will be installed and launched on the selected device or emulator. You can now use the Friends chat application to register, log in, and start conversations with other users.
 
 
