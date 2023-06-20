@@ -42,6 +42,13 @@ The chat page is where users can engage in real-time conversations with their fr
 The interface displays the conversation history, including sent and received messages,
 with timestamps indicating when the messages were sent or received.
 
+![image](https://github.com/EladSoffer/targil4/assets/116814174/664a9abf-0c2c-4656-b8df-f4bfd69862c0)
+
+**Setting page-**
+
+The settings page is a page that you can get to by presssing the ⚙️ in the Login page.
+
+
 ## How to Run
 1. Clone the repository.
 
