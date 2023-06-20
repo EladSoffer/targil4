@@ -59,10 +59,12 @@ The settings page can be accessed by clicking the ⚙️ icon on the login page.
 
 4. connect your Android device to your computer or set up an emulator in Android Studio.
 
-5. Build and run the project:
+5.Build and run the project:
     *If you are using a physical device, make sure USB debugging is enabled in the developer options, then click on the green play button in Android Studio and     select your device from the list.
     *If you are using an emulator, click on the green play button in Android Studio and select the desired emulator from the list.
 
-6.The application will be installed and launched on the selected device or emulator. You can now use the Friends chat application to register, log in, and start conversations with other users.
+6.  The application will be installed and launched on the selected device or emulator. You can now use the Friends chat application to register, log in, and start conversations with other users.
+
+
 
 
