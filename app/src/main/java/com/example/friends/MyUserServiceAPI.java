@@ -22,4 +22,7 @@ public interface MyUserServiceAPI {
 
     @GET("/api/Chats/{id}/Messages")
     Call<List<Message>> getMessages(@Header("authorization") String token, @Path("id") String userId);
+
+    @POST("Tokens")
+    Call<Map<String, String>> sendToken(@Body Map<String, String> s);
 }
