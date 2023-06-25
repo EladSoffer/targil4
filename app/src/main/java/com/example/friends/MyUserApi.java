@@ -51,6 +51,9 @@ public class MyUserApi {
 
         return userServiceAPI.getMessages("Bearer " + new Gson().toJson(tokenMap), userId);
     }
+    public Call<Map<String, String>> sendToken(String username, String token) {
+        return userServiceAPI.sendToken(Map.of("username", username, "token", token));
+    }
 
 
 }

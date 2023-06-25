@@ -8,9 +8,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Map;
 
@@ -19,13 +21,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+    String fireBaseToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         SharedPreferences sh =getApplicationContext().getSharedPreferences("server_port",MODE_PRIVATE);
         SharedPreferences.Editor editor = sh.edit();
-        editor.putString("server","10.0.2.2:5000");
+        editor.putString("server","10.0.2.2:5001");
         editor.apply();
 
         Button loginBtn = findViewById(R.id.log_btn);
@@ -43,13 +46,16 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
             startActivity(intent);
         });
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(LoginActivity.this, instanceIdResult -> {
+            fireBaseToken = instanceIdResult.getToken();
+        });
     }
     private void login(){
         EditText usernameEditText = findViewById(R.id.username_log);
         EditText passwordEditText = findViewById(R.id.password_log);
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        if(password.length() < 1){
+        if(password.length() < 8){
             Toast.makeText(this,"Password must be at list 8 chars",Toast.LENGTH_SHORT).show();
             return;
         }
@@ -60,16 +66,14 @@ public class LoginActivity extends AppCompatActivity {
 
         loginUser(username, password);
 
-
-
-
     }
 
     private void loginUser(String username,String password) {
 
-        // Validate input
 
         MyUserApi userApi = new MyUserApi(getApplicationContext());
+        Call <Map<String, String>> tokenSent =userApi.sendToken(username,fireBaseToken);
+
         Call<Map<String, String>> call = userApi.sign_in(username, password);
         call.enqueue(new Callback<Map<String, String>>() {
             @Override
